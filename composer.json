@@ -1,26 +1,25 @@
 {
-  "name": "greenbit/survey",
+  "name": "greenbit/surveyexpert",
   "description": "A Laravel package for managing surveys",
   "type": "library",
   "license": "MIT",
   "autoload": {
     "psr-4": {
-      "GreenBit\\SurveyExpert\\": "src/"
+      "GreenBit\\SurveyExpertComposer\\": "src/"
     }
   },
   "require": {
     "php": "^7.4|^8.0",
-    "illuminate/support": "^8.0|^9.0|^10.0",
-    "ext-json": "*"
+    "illuminate/support": "^8.0|^9.0|^10.0"
   },
   "extra": {
     "laravel": {
       "providers": [
-        "GreenBit\\SurveyExpert\\SurveyServiceProvider"
+        "GreenBit\\SurveyExpertComposer\\SurveyServiceProvider"
       ],
       "aliases": {
-        "SurveyProvider": "GreenBit\\SurveyExpert\\Facades\\SurveyProvider",
-        "SurveyBuilder": "GreenBit\\SurveyExpert\\Facades\\SurveyBuilder"
+        "SurveyProvider": "GreenBit\\SurveyExpertComposer\\Facades\\SurveyProvider",
+        "SurveyBuilder": "GreenBit\\SurveyExpertComposer\\Facades\\SurveyBuilder"
       }
     }
   }
