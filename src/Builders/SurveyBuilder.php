@@ -1,8 +1,6 @@
 <?php
 
-namespace App\Classes\SurveyExpert\Parts\Builders;
-
-use App\Classes\SurveyExpert\Parts\Providers\SurveyProvider;
+namespace SurveyExpert\Builders;
 
 class SurveyBuilder
 {

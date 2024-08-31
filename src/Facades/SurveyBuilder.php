@@ -1,7 +1,6 @@
 <?php
 
-namespace App\Classes\SurveyExpert\Parts\Facades;
-
+namespace SurveyExpert\Facades;
 use Illuminate\Support\Facades\Facade;
 
 

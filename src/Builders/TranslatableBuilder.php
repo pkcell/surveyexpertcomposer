@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Classes\SurveyExpert\Parts\Builders;
+namespace SurveyExpert\Builders;
+
 class TranslatableBuilder
 {
     protected $translations = [];

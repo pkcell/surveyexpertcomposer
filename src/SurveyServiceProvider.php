@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Classes\SurveyExpert\Parts;
+namespace SurveyExpert;
 
-use App\Classes\SurveyExpert\Parts\Builders\SurveyBuilder;
-use App\Classes\SurveyExpert\Parts\Providers\SurveyProvider;
 use Illuminate\Support\ServiceProvider;
+use SurveyExpert\Facades\SurveyBuilder;
+use SurveyExpert\Facades\SurveyProvider;
 
 class SurveyServiceProvider extends ServiceProvider
 {

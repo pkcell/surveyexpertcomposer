@@ -1,10 +1,8 @@
 <?php
 
-namespace App\Classes\SurveyExpert\Parts\Providers;
-
-use App\Classes\SurveyExpert\Parts\Builders\SurveyBuilder;
+namespace SurveyExpert\Providers;
+use SurveyExpert\Builders\SurveyBuilder;
 use Exception;
-
 class SurveyProvider
 {
     protected $builder;
