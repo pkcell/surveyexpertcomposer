@@ -1,10 +1,10 @@
 <?php
 
-namespace SurveyExpert;
+namespace Greenbit\SurveyExpert;
 
 use Illuminate\Support\ServiceProvider;
-use SurveyExpert\Facades\SurveyBuilder;
-use SurveyExpert\Facades\SurveyProvider;
+use Greenbit\SurveyExpert\Facades\SurveyBuilder;
+use Greenbit\SurveyExpert\Facades\SurveyProvider;
 
 class SurveyServiceProvider extends ServiceProvider
 {

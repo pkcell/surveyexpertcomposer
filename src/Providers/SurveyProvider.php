@@ -1,8 +1,10 @@
 <?php
 
-namespace SurveyExpert\Providers;
-use SurveyExpert\Builders\SurveyBuilder;
+namespace Greenbit\SurveyExpert\Providers;
+
 use Exception;
+use Greenbit\SurveyExpert\Builders\SurveyBuilder;
+
 class SurveyProvider
 {
     protected $builder;

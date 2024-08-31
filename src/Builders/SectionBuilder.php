@@ -1,6 +1,6 @@
 <?php
 
-namespace SurveyExpert\Builders;
+namespace Greenbit\SurveyExpert\Builders;
 
 class SectionBuilder
 {

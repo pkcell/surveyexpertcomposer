@@ -5,7 +5,7 @@
   "license": "MIT",
   "autoload": {
     "psr-4": {
-      "GreenBit\\": "src/"
+        "GreenBit\\SurveyExpert\\": "src/"
     }
   },
   "require": {
@@ -15,11 +15,11 @@
   "extra": {
     "laravel": {
       "providers": [
-        "GreenBit\\SurveyServiceProvider"
+        "GreenBit\\SurveyExpert\\SurveyServiceProvider"
       ],
       "aliases": {
-        "SurveyProvider": "GreenBit\\Facades\\SurveyProvider",
-        "SurveyBuilder": "GreenBit\\Facades\\SurveyBuilder"
+        "SurveyProvider": "GreenBit\\SurveyExpert\\Facades\\SurveyProvider",
+        "SurveyBuilder": "GreenBit\\SurveyExpert\\Facades\\SurveyBuilder"
       }
     }
   }

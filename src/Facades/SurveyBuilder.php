@@ -1,8 +1,8 @@
 <?php
 
-namespace SurveyExpert\Facades;
-use Illuminate\Support\Facades\Facade;
+namespace Greenbit\SurveyExpert\Facades;
 
+use Illuminate\Support\Facades\Facade;
 
 class SurveyBuilder extends Facade
 {
