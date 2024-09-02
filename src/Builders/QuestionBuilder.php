@@ -11,6 +11,7 @@ class QuestionBuilder
     protected $description;
     protected $required = false;
     protected $options = [];
+    protected $conditions = [];
     protected $max;
     protected $min;
 
@@ -33,7 +34,11 @@ class QuestionBuilder
 
     public function type($type)
     {
-        $supportedTypes = ['text', 'textarea', 'radio', 'checkbox', 'select', 'email', 'number', 'date', 'time', 'file', 'password', 'videorecord', 'audiorecord', 'image'];
+        $supportedTypes = [
+            'text', 'textarea', 'radio', 'checkbox', 'select', 'email', 'number',
+            'date', 'time', 'date_time', 'file', 'password', 'video_record', 'audio_record', 'image',
+            'rating_scale', 'likert_scale'
+        ];
         if (!in_array($type, $supportedTypes)) {
             throw new \Exception('Unsupported question type');
         }
@@ -79,6 +84,24 @@ class QuestionBuilder
         }
         $this->options[$value] = $option->getTranslations();
         return $this;
+    }
+
+    public function addCondition(callable $callback)
+    {
+        $condition = new ConditionBuilder();
+        $callback($condition);
+        $this->conditions[] = $condition;
+        return $this;
+    }
+
+    public function evaluateConditions($answers)
+    {
+        foreach ($this->conditions as $condition) {
+            if (!$condition->evaluate($answers)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public function getId()

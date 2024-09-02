@@ -8,6 +8,7 @@ class SectionBuilder
     protected $label;
     protected $description;
     protected $questions = [];
+    protected $conditions = [];
 
     public function __construct($data = null)
     {
@@ -38,6 +39,24 @@ class SectionBuilder
         $callback($question);
         $this->questions[$question->getId()] = $question;
         return $this;
+    }
+
+    public function addCondition(callable $callback)
+    {
+        $condition = new ConditionBuilder();
+        $callback($condition);
+        $this->conditions[] = $condition;
+        return $this;
+    }
+
+    public function evaluateConditions($answers)
+    {
+        foreach ($this->conditions as $condition) {
+            if (!$condition->evaluate($answers)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public function getId()
