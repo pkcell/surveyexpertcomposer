@@ -141,6 +141,11 @@ class QuestionBuilder
 
     public function toJson()
     {
+        $conditionsJson = [];
+        foreach ($this->conditions as $condition) {
+            $conditionsJson[] = json_decode($condition->toJson(), true);
+        }
+
         return json_encode([
             'id' => $this->id,
             'externalId' => $this->externalId,
@@ -148,7 +153,10 @@ class QuestionBuilder
             'label' => $this->label->getTranslations(),
             'description' => $this->description->getTranslations(),
             'required' => $this->required,
-            'options' => $this->options
+            'options' => $this->options,
+            'max' => $this->max,
+            'min' => $this->min,
+            'conditions' => $conditionsJson
         ]);
     }
 
@@ -158,10 +166,18 @@ class QuestionBuilder
         $this->id = $data['id'] ?? uniqid();
         $this->externalId = $data['externalId'] ?? null;
         $this->type = $data['type'] ?? null;
-
         $this->label->setTranslations($data['label'] ?? []);
         $this->description->setTranslations($data['description'] ?? []);
         $this->required = $data['required'] ?? false;
         $this->options = $data['options'] ?? [];
+        $this->max = $data['max'] ?? null;
+        $this->min = $data['min'] ?? null;
+
+        $this->conditions = [];
+
+        foreach ($data['conditions'] ?? [] as $conditionData) {
+            $condition = new ConditionBuilder(json_encode($conditionData));
+            $this->conditions[] = $condition;
+        }
     }
 }

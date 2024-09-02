@@ -102,14 +102,22 @@ class SectionBuilder
     public function toJson()
     {
         $questionsJson = [];
+        $conditionsJson = [];
+
         foreach ($this->questions as $question) {
             $questionsJson[] = json_decode($question->toJson(), true);
         }
+
+        foreach ($this->conditions as $condition) {
+            $conditionsJson[] = json_decode($condition->toJson(), true);
+        }
+
         return json_encode([
             'id' => $this->id,
             'label' => $this->label->getTranslations(),
             'description' => $this->description->getTranslations(),
-            'questions' => $questionsJson
+            'questions' => $questionsJson,
+            'conditions' => $conditionsJson
         ]);
     }
 
@@ -124,6 +132,11 @@ class SectionBuilder
         foreach ($data['questions'] ?? [] as $questionData) {
             $question = new QuestionBuilder(json_encode($questionData));
             $this->questions[$question->getId()] = $question;
+        }
+
+        foreach ($data['conditions'] ?? [] as $conditionData) {
+            $condition = new ConditionBuilder(json_encode($conditionData));
+            $this->conditions[] = $condition;
         }
     }
 }
