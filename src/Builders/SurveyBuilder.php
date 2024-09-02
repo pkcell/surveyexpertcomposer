@@ -2,6 +2,8 @@
 
 namespace Greenbit\SurveyExpert\Builders;
 
+use Greenbit\SurveyExpert\Providers\SurveyProvider;
+
 class SurveyBuilder
 {
     protected $id;
