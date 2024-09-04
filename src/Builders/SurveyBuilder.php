@@ -7,7 +7,7 @@ use Greenbit\SurveyExpert\Providers\SurveyProvider;
 class SurveyBuilder
 {
     protected $id;
-    protected $name;
+    protected $title;
     protected $description;
     protected $sections = [];
     protected $permissions = [];
@@ -29,10 +29,10 @@ class SurveyBuilder
         return new static($id);
     }
 
-    public function name(callable $callback)
+    public function title(callable $callback)
     {
-        $this->name = new TranslatableBuilder();
-        $callback($this->name);
+        $this->title = new TranslatableBuilder();
+        $callback($this->title);
         return $this;
     }
 
@@ -56,6 +56,21 @@ class SurveyBuilder
         return $this->sections;
     }
 
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    public function getPermissions()
+    {
+        return $this->permissions;
+    }
+
     public function updateSection($id, callable $callback)
     {
         if (isset($this->sections[$id])) {
@@ -71,7 +86,7 @@ class SurveyBuilder
             $sectionsJson[] = json_decode($section->toJson(), true);
         }
         return json_encode([
-            'name' => $this->name->getTranslations(),
+            'title' => $this->title->getTranslations(),
             'description' => $this->description->getTranslations(),
             'sections' => $sectionsJson
         ]);
@@ -80,10 +95,10 @@ class SurveyBuilder
     public function fromJson($data)
     {
         $data = json_decode($data, true);
-        $this->name = new TranslatableBuilder();
+        $this->title = new TranslatableBuilder();
         $this->description = new TranslatableBuilder();
 
-        $this->name->setTranslations($data['name'] ?? []);
+        $this->title->setTranslations($data['name'] ?? []);
         $this->description->setTranslations($data['description'] ?? []);
 
         foreach ($data['sections'] ?? [] as $sectionData) {

@@ -5,7 +5,7 @@ namespace Greenbit\SurveyExpert\Builders;
 class QuestionBuilder
 {
     protected $id;
-    protected $logicDescriptor;
+    protected $logicFieldAlias;
     protected $externalId;
     protected $type;
     protected $label;
@@ -33,9 +33,9 @@ class QuestionBuilder
         return $this;
     }
 
-    public function logicDescriptor($logicDescriptor)
+    public function questionLogicAlias($alias)
     {
-        $this->logicDescriptor = $logicDescriptor;
+        $this->logicFieldAlias = $alias;
         return $this;
     }
 
@@ -155,7 +155,7 @@ class QuestionBuilder
 
         return json_encode([
             'id' => $this->id,
-            'logicDescriptor' => $this->logicDescriptor,
+            'logicFieldAlias' => $this->logicFieldAlias,
             'externalId' => $this->externalId,
             'type' => $this->type,
             'label' => $this->label->getTranslations(),
@@ -172,7 +172,7 @@ class QuestionBuilder
     {
         $data = json_decode($data, true);
         $this->id = $data['id'] ?? uniqid();
-        $this->logicDescriptor = $data['logicDescriptor'] ?? null;
+        $this->logicFieldAlias = $data['logicFieldAlias'] ?? null;
         $this->externalId = $data['externalId'] ?? null;
         $this->type = $data['type'] ?? null;
         $this->label->setTranslations($data['label'] ?? []);
