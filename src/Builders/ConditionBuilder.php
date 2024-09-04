@@ -18,9 +18,9 @@ class ConditionBuilder
         }
     }
 
-    public function field($field)
+    public function field($logicDescriptor)
     {
-        $this->field = $field;
+        $this->field = $logicDescriptor;
         return $this;
     }
 

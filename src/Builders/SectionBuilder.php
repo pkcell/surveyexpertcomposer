@@ -5,6 +5,7 @@ namespace Greenbit\SurveyExpert\Builders;
 class SectionBuilder
 {
     protected $id;
+    protected $logicDescriptor;
     protected $label;
     protected $description;
     protected $questions = [];
@@ -19,6 +20,12 @@ class SectionBuilder
         if ($data) {
             $this->fromJson($data);
         }
+    }
+
+    public function logicDescriptor($logicDescriptor)
+    {
+        $this->logicDescriptor = $logicDescriptor;
+        return $this;
     }
 
     public function label(callable $callback)
@@ -114,6 +121,7 @@ class SectionBuilder
 
         return json_encode([
             'id' => $this->id,
+            'logicDescriptor' => $this->logicDescriptor,
             'label' => $this->label->getTranslations(),
             'description' => $this->description->getTranslations(),
             'questions' => $questionsJson,
@@ -125,6 +133,7 @@ class SectionBuilder
     {
         $data = json_decode($data, true);
         $this->id = $data['id'] ?? uniqid();
+        $this->logicDescriptor = $data['logicDescriptor'] ?? null;
 
         $this->label->setTranslations($data['label'] ?? []);
         $this->description->setTranslations($data['description'] ?? []);
